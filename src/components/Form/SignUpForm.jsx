@@ -22,6 +22,7 @@ function SignUpForm() {
 
     if (ValidationCheck()) {
       const { pseudo, password } = inputStates;
+
       axios
         .post("http://localhost:3000/userData", {
           pseudo,

@@ -1,29 +1,26 @@
 {
   "userData": [
     {
-      "pseudo": "Fianeso",
-      "password": "123456!",
-      "id": "1"
+      "id": "6c6a",
+      "pseudo": "user1",
+      "password": "52bgf"
     },
     {
-      "id": "ad91",
-      "pseudo": "aaaaa",
-      "password": "123456!"
+      "id": "2325",
+      "pseudo": "user2",
+      "password": "ef458"
+    }
+  ],
+  "favorites": [
+    {
+      "id": "4f94",
+      "movieId": 967847,
+      "userId": "2325"
     },
     {
-      "id": "a5d5",
-      "pseudo": "aaaaa",
-      "password": "123456!"
-    },
-    {
-      "id": "4af9",
-      "pseudo": "Bilal",
-      "password": "Bilal6"
-    },
-    {
-      "id": "5c93",
-      "pseudo": "Ines1805",
-      "password": "Ines1805"
+      "id": "a3e9",
+      "movieId": 429617,
+      "userId": "2325"
     }
   ]
 }

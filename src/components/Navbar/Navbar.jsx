@@ -1,18 +1,20 @@
-import { NavLink } from "react-router-dom";
-import loup from "../assets/icon-loup.svg";
+import loup from "../../assets/icon-loup.svg";
 import { useState } from "react";
+import NavIsLogged from "./NavIsLogged";
+import NavNotLogged from "./NavNotLogged";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../../contexts/authContext";
 
 export default function Navbar({ isLogged, setIsLogged }) {
   const [isClicked, setIsClicked] = useState(false);
   const [selectedLi, setSelectedLi] = useState([]);
 
+  const { userLoggedIn } = useAuth();
+
+  // entrer le user à la co dans le local storage, et islogged change en fonction du local storage, test les fav dans le db par user ça peut être bien
+
   function handleSelectedLi(index) {
-    if (index === 3) {
-      window.location.href = "*";
-      // Modifier à terme
-    } else {
-      setSelectedLi(selectedLi === index ? null : index);
-    }
+    setSelectedLi(selectedLi === index ? null : index);
   }
 
   const list = [
@@ -46,10 +48,6 @@ export default function Navbar({ isLogged, setIsLogged }) {
         "A la une",
       ],
     },
-    {
-      id: 4,
-      content: "Plus",
-    },
   ];
   return (
     <div className="w-full">
@@ -74,28 +72,18 @@ export default function Navbar({ isLogged, setIsLogged }) {
               )}
             </li>
           ))}
+          {userLoggedIn ? (
+            <NavLink to="/favorites" className="text-white">
+              Mes favoris
+            </NavLink>
+          ) : null}
         </ul>
 
-        <div className="w-[30%] text-center flex items-center justify-end mr-4">
-          {isLogged ? (
-            <div>
-              <p className="text-white font-semibold">Vous êtes connecté</p>
-              <button
-                onClick={() => setIsLogged(false)}
-                className="text-white hover:underline"
-              >
-                Déconnexion
-              </button>
-            </div>
+        <div className="w-[30%] text-center flex items-center justify-end mr-4 z-10">
+          {userLoggedIn ? (
+            <NavIsLogged isLogged={isLogged} setIsLogged={setIsLogged} />
           ) : (
-            <NavLink
-              to="/sign-in"
-              className={`transition-all duration-300 text-white ${
-                isClicked ? `mr-3` : `mr-3`
-              }`}
-            >
-              Log In{" "}
-            </NavLink>
+            <NavNotLogged isClicked={isClicked} setIsClicked={setIsClicked} />
           )}
 
           <input

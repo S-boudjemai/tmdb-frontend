@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import Password from "./Password";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { doSignInWithEmailAndPassword } from "../../firebase/auth";
+import { useAuth } from "../../contexts/authContext";
 
 function SignInForm({ isLogged, setIsLogged }) {
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [inputStates, setInputStates] = useState({
     pseudo: "",
     password: "",
   });
+  const { userLoggedIn } = useAuth();
 
   const navigate = useNavigate();
 
@@ -19,12 +23,13 @@ function SignInForm({ isLogged, setIsLogged }) {
       .then((res) => setData(res.data));
   };
 
-  useEffect(() => getData(), []);
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Vérifier les informations d'identification
     const user = data.find(
       (user) =>
         user.pseudo === inputStates.pseudo &&
@@ -36,6 +41,7 @@ function SignInForm({ isLogged, setIsLogged }) {
       setMessage("Connexion réussie!");
       setIsLogged(true);
       console.log("isLogged a été mis à jour à:", true);
+      localStorage.setItem("userId", user.id);
       navigate("/");
 
       // Rediriger l'utilisateur ou effectuer d'autres actions ici
