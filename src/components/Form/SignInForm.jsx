@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import Password from "./Password";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { doSignInWithEmailAndPassword } from "../../firebase/auth";
-import { useAuth } from "../../contexts/authContext";
 
 function SignInForm({ isLogged, setIsLogged }) {
   const [data, setData] = useState([]);
@@ -13,7 +11,6 @@ function SignInForm({ isLogged, setIsLogged }) {
     pseudo: "",
     password: "",
   });
-  const { userLoggedIn } = useAuth();
 
   const navigate = useNavigate();
 

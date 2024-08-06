@@ -2,21 +2,47 @@ import React, { useState } from "react";
 
 import { doSignInWithEmailAndPassword } from "../../../firebase/auth";
 import { useAuth } from "../../../contexts/authContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const { userLoggedIn } = useAuth();
+  const { userLoggedIn, setUserLoggedIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isSigningIn) {
       setIsSigningIn(true);
-      await doSignInWithEmailAndPassword(email, password);
+      try {
+        const userCredential = await doSignInWithEmailAndPassword(
+          email,
+          password
+        );
+        const user = userCredential.user;
+        console.log(`requête reu pour vérifier l'user : ${user.uid}`);
+
+        // verifier si l'user existe dans la database
+        const response = await axios.get(
+          `http://localhost:8081/table_tmdb/checkUser/${user.uid}`
+        );
+        if (response.data.exists) {
+          setUserLoggedIn(true);
+          navigate("/");
+        } else {
+          // si l'user n'existe pas dans la database
+          setUserLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Erreur de connexion", error);
+      } finally {
+        setIsSigningIn(false);
+      }
     }
   };
+
   return (
     <div>
       {userLoggedIn && <Navigate to={"/"} replace={true} />}

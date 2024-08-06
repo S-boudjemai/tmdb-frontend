@@ -41,6 +41,7 @@ export function AuthProvider({ children }) {
     isEmailUser,
     currentUser,
     userLoggedIn,
+    setUserLoggedIn,
     loading,
   };
 

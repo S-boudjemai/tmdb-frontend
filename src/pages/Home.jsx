@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 function Home({ isLogged, setIsLogged }) {
   const [sortedMovies, setSortedMovies] = useState([]);
   const [movie, setMovie] = useState([]);
-  const [input, setInput] = useState("fast");
+  const [input, setInput] = useState("a");
 
   useEffect(() => {
     fetch(

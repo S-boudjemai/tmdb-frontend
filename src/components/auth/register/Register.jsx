@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/authContext";
 import { doCreateUserWithEmailAndPassword } from "../../../firebase/auth";
+import axios from "axios";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,21 @@ function Register() {
     if (!isRegistering) {
       setIsRegistering(true);
       try {
-        await doCreateUserWithEmailAndPassword(email, password);
+        const userCredential = await doCreateUserWithEmailAndPassword(
+          email,
+          password
+        );
+        const user = userCredential.user;
+        console.log("user registered", user);
+
+        // j'envoie l'id a mon serveur back
+        const response = await axios.post(
+          "http://localhost:8081/table_tmdb/addUser",
+          {
+            id: user.uid,
+          }
+        );
+
         setIsRegistering(false); // Reset après réussite ou échec
         setEmail("");
         setPassword("");

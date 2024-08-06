@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/authContext/index.jsx";
 
 function SignIn() {
-  const { userLoggedIn } = useAuth();
-
   return (
     <div className="w-full h-screen flex  justify-center items-center flex-col">
       <div>
