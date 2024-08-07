@@ -9,24 +9,32 @@ const db = mysql.createConnection({
   database: "user_schema",
 });
 
-router.put("/:id", (req, res) => {
+router.put("/table_tmdb/favorites/:id", (req, res) => {
   const { id } = req.params;
   let { favorites } = req.body;
 
+  console.log("Requête PUT reçue pour ID:", id);
+  console.log("Nouveaux favoris reçus:", favorites);
+
   if (!Array.isArray(favorites)) {
+    console.log("Les favoris ne sont pas un tableau.");
     return res.status(400).json({
-      message: "Les favoris sont passé sous form de tableau d'id de films ",
+      message:
+        "Les favoris doivent être passés sous forme de tableau d'ID de films.",
     });
   }
 
-  favorites = JSON.stringify(favorites);
+  // Convertir la liste en chaîne JSON
+  const favoritesString = JSON.stringify(favorites);
 
-  const sql = "UPDATE table_tmdb SET favorites = ? WHERE id = ?";
-  db.query(sql, [favorites, id], (err, result) => {
+  // Mettre à jour les favoris
+  const sqlUpdate = "UPDATE table_tmdb SET favorites = ? WHERE id = ?";
+  db.query(sqlUpdate, [favoritesString, id], (err, result) => {
     if (err) {
-      console.error("erreur lors de la mise à jours des favoris : ", err);
+      console.error("Erreur lors de la mise à jour des favoris :", err);
       return res.status(500).json(err);
     }
+    console.log("Favoris mis à jour dans la base de données:", favoritesString);
     return res.status(200).json({
       message: "Favoris mis à jour avec succès",
     });
@@ -34,5 +42,3 @@ router.put("/:id", (req, res) => {
 });
 
 module.exports = router;
-
-// envoyer les movies id to string puis l'inverse pour les récupérer

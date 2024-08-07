@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const PORT = 8081;
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
@@ -29,26 +30,16 @@ app.get("/", (req, res) => {
 });
 // route de test pour vérifier que le serveur fonctionne
 
-//  IMPORTATION DES ROUTES NEW TABLE //
-
-const getUsers = require("./routes/new_table/getUsers");
-const addUsers = require("./routes/new_table/addUsers");
-const updateUsers = require("./routes/new_table/updateUsers");
-const deleteUsers = require("./routes/new_table/deleteUsers");
-
-app.use("/new_table", getUsers);
-app.use("/new_table", addUsers);
-app.use("/new_table", updateUsers);
-app.use("/new_table", deleteUsers);
-
 //  IMPORTATION DES ROUTES TABLE TMDB //
 
 const addUser = require("./routes/table_tmdb/addUser");
 const updateFavorites = require("./routes/table_tmdb/updateFavorites");
 const checkUser = require("./routes/table_tmdb/checkUser");
+const getFavorites = require("./routes/table_tmdb/getFavorites");
 
+app.use("/", getFavorites);
 app.use("/table_tmdb", addUser);
-app.use("/table_tmdb", updateFavorites);
+app.use("/", updateFavorites);
 app.use("/table_tmdb", checkUser);
 
 app.listen(PORT, () => {

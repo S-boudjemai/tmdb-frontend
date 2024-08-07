@@ -1,59 +1,86 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaStar, FaHeart, FaRegHeart } from "react-icons/fa";
 import image from "../assets/image.jpg";
 import axios from "axios";
+import { useAuth } from "../contexts/authContext";
 
 function MoviesCard({ movie }) {
+  const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-
-  const movieId = movie.id;
+  const { userId } = useAuth();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        if (userId) {
+          const response = await axios.get(
+            `http://localhost:8081/table_tmdb/favorites/${userId}`
+          );
+          const favoritesData = response.data.favorites;
+
+          if (favoritesData) {
+            try {
+              const userFavorites = JSON.parse(favoritesData);
+              setFavorites(Array.isArray(userFavorites) ? userFavorites : []);
+              setIsFavorite(
+                Array.isArray(userFavorites) && userFavorites.includes(movie.id)
+              );
+            } catch (e) {
+              console.error("Erreur lors du parsing des favoris :", e);
+              setFavorites([]);
+            }
+          } else {
+            setFavorites([]);
+          }
+        } else {
+          console.error("userId est indéfini");
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des favoris :", error);
+      }
+    };
+    fetchFavorites();
+  }, [userId, movie.id]);
 
   const handleClick = () => {
     navigate(`/movie/${movie.id}`);
   };
 
-  const handleFavoriteClick = (e) => {
+  const handleFavoriteClick = async (e) => {
     e.stopPropagation();
-    const newFavoriteStatus = !isFavorite;
+
+    // Log des favoris actuels avant la mise à jour
+    console.log("Favoris actuels:", favorites);
+    console.log("Film actuel:", movie.id);
+
+    const newFavorites = isFavorite
+      ? favorites.filter((id) => id !== movie.id)
+      : [...favorites, movie.id];
+
+    // Log des nouveaux favoris après la mise à jour
+    console.log("Nouveaux favoris:", newFavorites);
+
+    setFavorites(newFavorites);
     setIsFavorite(!isFavorite);
 
-    if (newFavoriteStatus) {
-      addFavorite(movie.id);
-    } else {
-      removeFavorite(movie.id);
-    }
-  };
+    try {
+      if (userId) {
+        const url = `http://localhost:8081/table_tmdb/favorites/${userId}`;
+        console.log("URL de la requête PUT :", url);
 
-  const addFavorite = (movieId) => {
-    const userId = localStorage.getItem("userId");
-    if (!userId) {
-      console.error("userId is not found");
-      return;
+        await axios.put(url, {
+          favorites: newFavorites,
+        });
+        console.log("Favoris mis à jour avec succès");
+      } else {
+        console.error("userId est indéfini");
+      }
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour des favoris :", error);
     }
-    axios
-      .post(`http://localhost:3000/favorites`, { movieId, userId })
-      .then((response) => {
-        console.log("movie id successfully posted");
-        console.log(userId);
-      })
-      .catch((error) => {
-        console.error("error posting movie id", error);
-      });
-  };
-
-  const removeFavorite = (id) => {
-    const userId = localStorage.getItem("userId");
-    axios
-      .delete(`http://localhost:3000/favorites`, { movieId, userId })
-      .then((response) => {
-        console.log("movie id successfully removed");
-      })
-      .catch((error) => {
-        console.error("error removing movie id", error);
-      });
   };
 
   return (

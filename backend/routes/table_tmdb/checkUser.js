@@ -13,6 +13,7 @@ router.get("/checkUser/:id", (req, res) => {
   console.log("requête reçu checkuser");
 
   const { id } = req.params;
+  // check user est appelé au login avec un id, et ici on extraie cet id
   console.log("id : ", id);
 
   const sql = "SELECT * FROM table_tmdb WHERE id = ? ";

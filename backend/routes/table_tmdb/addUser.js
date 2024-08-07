@@ -12,15 +12,18 @@ const db = mysql.createConnection({
 // post l'id
 router.post("/addUser", (req, res) => {
   console.log("requête reçu add user");
-
+  // extraction de l'id posté via register
   const { id } = req.body;
   console.log("données reçues :", id);
 
   const checkUserSql = "SELECT * FROM table_tmdb WHERE id = ?";
+  // requête sql qui cherche id
   db.query(checkUserSql, [id], (err, result) => {
+    // prends en paramètre l'id défini plus haut
     if (err) {
       console.error("erreur de la vérif", err);
       return res.status(500).json(err);
+      // s'il ne trouve pas l'id
     }
     if (result.length > 0) {
       // utilisateur existe déjà

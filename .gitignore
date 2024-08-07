@@ -24,10 +24,11 @@ dist-ssr
 *.sw?
 
 
-API_KEY : f2aacbaffec6c04e80ab5fdf983b982d
 
-TOKEN API : eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMmFhY2JhZmZlYzZjMDRlODBhYjVmZGY5ODNiOTgyZCIsIm5iZiI6MTcyMjEzMDg3Ny4wMDA2NDYsInN1YiI6IjY2OGY2YWRhNTM3OWFmZTA1NWU2YTY2NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.puSHgve_5C-5dV_Q7_QPYQD53W0jklzC-ECoOnLGlZ4
+
 
 commande db json 
 
 json-server --watch db.json
+
+.env
