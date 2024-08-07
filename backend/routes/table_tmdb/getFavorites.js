@@ -19,18 +19,22 @@ db.connect((err) => {
 
 router.get("/table_tmdb/favorites/:id", (req, res) => {
   const { id } = req.params;
+  // récupérer les favoris selon l'id
 
   const sql = "SELECT favorites FROM table_tmdb WHERE id = ?";
   db.query(sql, [id], (err, result) => {
     if (err) {
       console.error("Erreur lors de la récupération des favoris :", err);
       return res.status(500).json(err);
+      // error récupération des favoris
     }
     if (result.length === 0) {
-      return res.status(404).json({ message: "Utilisateur non trouvé" });
+      return res.status(404).json({ message: "Favoris non trouvé" });
+      // S'il n'y a pas de résultats
     }
     res.status(200).json({
       favorites: result[0].favorites,
+      // Les résultats des favoris
     });
   });
 });
