@@ -52,7 +52,7 @@ function Home({ isLogged, setIsLogged }) {
       try {
         if (userId) {
           const response = await axios.get(
-            `http://localhost:8081/table_tmdb/favorites/${userId}`
+            `http://localhost:8081/users/favorites/${userId}`
           );
           const favoritesData = response.data.favorites;
           console.log("favoritesData :", JSON.parse(favoritesData));
@@ -87,6 +87,7 @@ function Home({ isLogged, setIsLogged }) {
               movie={movie}
               key={movie.id}
               dataBaseFavorite={dataBaseFavorite}
+              setDataBaseFavorite={setDataBaseFavorite}
             />
             // au fetch avoir l'info des films favoris ou non ?
           ))}

@@ -26,7 +26,7 @@ function Login() {
 
         // verifier si l'user existe dans la database
         const response = await axios.get(
-          `http://localhost:8081/table_tmdb/checkUser/${user.uid}`
+          `http://localhost:8081/users/checkUser/${user.uid}`
         );
         if (response.data.exists) {
           setUserLoggedIn(true);

@@ -31,9 +31,9 @@ function Register() {
 
         // j'envoie l'id a mon serveur back
         const response = await axios.post(
-          "http://localhost:8081/table_tmdb/addUser",
+          "http://localhost:8081/users/addUser",
           {
-            id: user.uid,
+            id_firebase: user.uid,
           }
         );
 

@@ -6,7 +6,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "6Z:3r%3FUht=",
-  database: "user_schema",
+  database: "tmdb_db",
 });
 
 db.connect((err) => {
@@ -17,12 +17,12 @@ db.connect((err) => {
   console.log("Connecté à la base de données");
 });
 
-router.get("/table_tmdb/favorites/:id", (req, res) => {
-  const { id } = req.params;
+router.get("/users/favorites/:id_firebase", (req, res) => {
+  const { id_firebase } = req.params;
   // récupérer les favoris selon l'id
 
-  const sql = "SELECT favorites FROM table_tmdb WHERE id = ?";
-  db.query(sql, [id], (err, result) => {
+  const sql = "SELECT favorites FROM users WHERE id_firebase = ?";
+  db.query(sql, [id_firebase], (err, result) => {
     if (err) {
       console.error("Erreur lors de la récupération des favoris :", err);
       return res.status(500).json(err);

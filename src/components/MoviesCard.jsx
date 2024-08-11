@@ -5,7 +5,7 @@ import image from "../assets/image.jpg";
 import axios from "axios";
 import { useAuth } from "../contexts/authContext";
 
-function MoviesCard({ movie, dataBaseFavorite }) {
+function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
   const [favorites, setFavorites] = useState();
   const [isFavorite, setIsFavorite] = useState();
   const { userId } = useAuth();
@@ -29,8 +29,13 @@ function MoviesCard({ movie, dataBaseFavorite }) {
     // Log des favoris actuels avant la mise à jour
     console.log("Favoris actuels:", favorites);
     console.log("Film actuel:", movie.id);
+    let updatedFavorites;
 
-    const updatedFavorites = [...favorites, movie.id];
+    if (isFavorite) {
+      updatedFavorites = favorites.filter((id) => id !== movie.id);
+    } else {
+      updatedFavorites = [...favorites, movie.id];
+    }
 
     // Log des nouveaux favoris après la mise à jour
     console.log("Nouveaux favoris:", updatedFavorites);
@@ -40,12 +45,21 @@ function MoviesCard({ movie, dataBaseFavorite }) {
 
     try {
       if (userId) {
-        const url = `http://localhost:8081/table_tmdb/favorites/${userId}`;
+        const url = `http://localhost:8081/users/favorites/${userId}`;
         console.log("URL de la requête PUT :", url);
 
         await axios.put(url, {
           favorites: updatedFavorites,
         });
+
+        const response = await axios.get(
+          `http://localhost:8081/users/favorites/${userId}`
+        );
+        const favoritesData = response.data.favorites;
+        console.log("favoritesData :", JSON.parse(favoritesData));
+
+        setDataBaseFavorite(JSON.parse(favoritesData));
+        setIsFavorite(updatedFavorites.includes(movie.id));
 
         console.log("Favoris mis à jour avec succès");
       } else {

@@ -12,7 +12,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "6Z:3r%3FUht=",
-  database: "user_schema",
+  database: "tmdb_db",
 });
 // ici je crée la connexion avec la database
 
@@ -32,15 +32,19 @@ app.get("/", (req, res) => {
 
 //  IMPORTATION DES ROUTES TABLE TMDB //
 
-const addUser = require("./routes/table_tmdb/addUser");
-const updateFavorites = require("./routes/table_tmdb/updateFavorites");
-const checkUser = require("./routes/table_tmdb/checkUser");
-const getFavorites = require("./routes/table_tmdb/getFavorites");
+const addUser = require("./routes/users/addUser");
+const updateFavorites = require("./routes/users/updateFavorites");
+const checkUser = require("./routes/users/checkUser");
+const getFavorites = require("./routes/users/getFavorites");
 
-app.use("/", getFavorites);
-app.use("/table_tmdb", addUser);
+app.use("/users", addUser);
 app.use("/", updateFavorites);
-app.use("/table_tmdb", checkUser);
+app.use("/users", checkUser);
+app.use("/", getFavorites);
+
+app.get("/test", (req, res) => {
+  res.send("Route de test atteinte");
+});
 
 app.listen(PORT, () => {
   console.log("listening");

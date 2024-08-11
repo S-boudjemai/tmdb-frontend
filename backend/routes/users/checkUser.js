@@ -6,19 +6,19 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "6Z:3r%3FUht=",
-  database: "user_schema",
+  database: "tmdb_db",
 });
 
-router.get("/checkUser/:id", (req, res) => {
+router.get("/checkUser/:id_firebase", (req, res) => {
   console.log("requête reçu checkuser");
 
-  const { id } = req.params;
+  const { id_firebase } = req.params;
   // check user est appelé au login avec un id, et ici on extraie cet id
-  console.log("id : ", id);
+  console.log("id : ", id_firebase);
 
-  const sql = "SELECT * FROM table_tmdb WHERE id = ? ";
+  const sql = "SELECT * FROM users WHERE id_firebase = ? ";
   // chercher l'id ddans la database
-  db.query(sql, [id], (err, result) => {
+  db.query(sql, [id_firebase], (err, result) => {
     if (err) {
       console.log("erreur de verif du user checkuser", err);
       // catch error
