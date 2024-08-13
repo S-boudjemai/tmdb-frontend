@@ -36,6 +36,8 @@ function Home({ isLogged, setIsLogged }) {
   // j'ai ajouté ça parce que la map de sortedmovies me renvoyait rien, si je navais pas cliqué sur une card du slider et revenu en arrière
 
   const handleSort = (order) => {
+    console.log("order :", order);
+
     const sorted = [...sortedMovies].sort((a, b) => {
       if (order === "top") {
         return b.vote_average - a.vote_average;
@@ -77,12 +79,19 @@ function Home({ isLogged, setIsLogged }) {
         <h1 className="text-center text-5xl text-white mt-8 font-bold tracking-wide">
           Recherchez votre film
         </h1>
-        <div className="flex flex-col sm:flex-row items-center justify-between mt-8 space-y-4 sm:space-y-0 w-[full]">
-          <SortMovies onSort={handleSort} />
-          <div className="w-[60%] absolute left-[400px]">
-            <InputSearch input={input} setInput={setInput} />
+        <div className="flex flex-col sm:flex-row items-center mt-8 w-full">
+          <div className="flex justify-start sm:flex-1">
+            <SortMovies onSort={handleSort} />
           </div>
+          <div className="flex justify-center sm:flex-1 mt-4 sm:mt-0">
+            <div className="w-full sm:max-w-[1200px]">
+              <InputSearch input={input} setInput={setInput} />
+            </div>
+          </div>
+          <div className="flex-1"></div>{" "}
+          {/* This ensures equal spacing on the right */}
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-12">
           {sortedMovies.map((movie) => (
             <div

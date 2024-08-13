@@ -3,11 +3,12 @@ import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
 import MoviesCard from "../components/MoviesCard";
 import { useAuth } from "../contexts/authContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Favorites() {
   const [listData, setListData] = useState([]);
   const { userId } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getFavorites = async () => {
@@ -27,9 +28,10 @@ function Favorites() {
     getFavorites();
   }, [userId]);
 
-  return (
+  return userId ? (
     <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black min-h-screen flex flex-col">
       <Navbar />
+
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-center text-5xl text-white mt-8 font-bold tracking-wide">
           Vos Favoris
@@ -65,6 +67,8 @@ function Favorites() {
         </div>
       </div>
     </div>
+  ) : (
+    navigate("/")
   );
 }
 

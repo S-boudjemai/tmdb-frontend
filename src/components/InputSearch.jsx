@@ -14,7 +14,7 @@ function InputSearch({ input, setInput }) {
         onChange={handleSearch}
         type="text"
         placeholder="Rechercher un film, une série, un acteur..."
-        className=" h-10 rounded p-3 w-[20%]"
+        className="w-full p-2 text-lg text-black rounded-lg sm:max-w-[1200px]"
       />
     </div>
   );

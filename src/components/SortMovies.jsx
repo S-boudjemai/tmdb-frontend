@@ -11,7 +11,7 @@ function SortMovies({ onSort }) {
         Les mieux notés
       </span>
       <span
-        className="cursor-pointer flex flex-col items-center text-xl text-white"
+        className="cursor-pointer  pr-5 flex flex-col items-center text-xl text-white"
         onClick={() => onSort("bot")}
       >
         <FaArrowDown className="w-6 h-6 text-red-400" />
