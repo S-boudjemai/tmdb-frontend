@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaStar, FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import image from "../assets/image.jpg";
 import axios from "axios";
 import { useAuth } from "../contexts/authContext";
 
 function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
-  const [favorites, setFavorites] = useState();
+  const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState();
   const { userId } = useAuth();
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("databasefavorite : ", dataBaseFavorite);
+
     if (dataBaseFavorite) {
       setFavorites(dataBaseFavorite);
-      setIsFavorite(dataBaseFavorite.includes(movie.id));
+      setIsFavorite(dataBaseFavorite.some((fav) => fav.id === movie.id));
     }
   }, [dataBaseFavorite, movie.id]);
 
@@ -29,12 +31,16 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
     // Log des favoris actuels avant la mise à jour
     console.log("Favoris actuels:", favorites);
     console.log("Film actuel:", movie.id);
+    console.log("is favorite avant mise à jour ", isFavorite);
+
     let updatedFavorites;
 
     if (isFavorite) {
-      updatedFavorites = favorites.filter((id) => id !== movie.id);
+      updatedFavorites = favorites.filter(
+        (favMovie) => favMovie.id !== movie.id
+      );
     } else {
-      updatedFavorites = [...favorites, movie.id];
+      updatedFavorites = [...favorites, movie];
     }
 
     // Log des nouveaux favoris après la mise à jour
@@ -42,6 +48,8 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
 
     setIsFavorite(!isFavorite);
     setFavorites(updatedFavorites);
+
+    console.log(isFavorite);
 
     try {
       if (userId) {
@@ -56,10 +64,11 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
           `http://localhost:8081/users/favorites/${userId}`
         );
         const favoritesData = response.data.favorites;
-        console.log("favoritesData :", JSON.parse(favoritesData));
+
+        console.log("favoritesData :", favoritesData);
 
         setDataBaseFavorite(JSON.parse(favoritesData));
-        setIsFavorite(updatedFavorites.includes(movie.id));
+        setIsFavorite(updatedFavorites.some((fav) => fav.id === movie.id));
 
         console.log("Favoris mis à jour avec succès");
       } else {

@@ -26,8 +26,10 @@ function ActiveSlider() {
   }, []);
 
   return (
-    <div className="flex mt-20 items-center justify-center flex-col  bg-slate-400 relative">
-      <h1 className="text-center text-white text-3xl mb-10">A la une</h1>
+    <div className="flex mt-20 items-center justify-center flex-col bg-gradient-to-br from-gray-800 via-gray-900 to-black relative py-12">
+      <h1 className="text-center text-white text-4xl font-bold mb-10 tracking-wide">
+        À la une
+      </h1>
       <Swiper
         breakpoints={{
           340: {
@@ -52,7 +54,7 @@ function ActiveSlider() {
             <SwiperSlide key={movie.id}>
               <MoviesCardSlider
                 movie={movie}
-                className="h-[250px] w-[215px] lg:h-[500px] lg:w-[350px] mb-12"
+                className="h-[250px] w-[215px] lg:h-[500px] lg:w-[350px] mb-12 transform transition-transform hover:scale-105 rounded-lg shadow-lg overflow-hidden"
               />
             </SwiperSlide>
           ))}
