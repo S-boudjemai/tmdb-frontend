@@ -10,7 +10,7 @@ const db = mysql.createConnection({
 });
 
 // post l'id
-router.post("/addUser", (req, res) => {
+router.post("/users/addUser", (req, res) => {
   console.log("requête reçu add user");
   // extraction de l'id posté via register
   const { id_firebase } = req.body;

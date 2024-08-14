@@ -37,7 +37,7 @@ const updateFavorites = require("./routes/users/updateFavorites");
 const checkUser = require("./routes/users/checkUser");
 const getFavorites = require("./routes/users/getFavorites");
 
-app.use("/users", addUser);
+app.use("/", addUser);
 app.use("/", updateFavorites);
 app.use("/users", checkUser);
 app.use("/", getFavorites);

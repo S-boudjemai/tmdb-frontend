@@ -50,21 +50,23 @@ export default function Navbar({ isLogged, setIsLogged }) {
     },
   ];
   return (
-    <div className="w-full">
-      <nav className="flex justify-between w-[100vw] p-4 bg-slate-700 ">
-        <ul className="flex items-center justify-between w-[20%] ml-4">
+    <div className="w-full bg-slate-800 shadow-lg">
+      <nav className="flex justify-between w-full p-4">
+        <ul className="flex items-center space-x-8 ml-4">
           {list.map((item, index) => (
             <li
               key={item.id}
-              className="cursor-pointer text-white"
+              className="relative cursor-pointer text-white hover:text-gray-300 transition-colors duration-200"
               onClick={() => handleSelectedLi(index)}
             >
               {item.content}
               {selectedLi === index && item.SubCategories?.length > 0 && (
-                // si selected li = index et que item.subcategories existe et s'il existe que sa longueur est supérieur à 0 alors tu affiche le dessous
-                <ul className="absolute bg-white shadow-lg mt-5">
+                <ul className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20">
                   {item.SubCategories.map((subItem, subIndex) => (
-                    <li key={subIndex} className="p-2 text-black">
+                    <li
+                      key={subIndex}
+                      className="p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                    >
                       {subItem}
                     </li>
                   ))}
@@ -73,33 +75,37 @@ export default function Navbar({ isLogged, setIsLogged }) {
             </li>
           ))}
           {userLoggedIn ? (
-            <NavLink to="/favorites" className="text-white">
+            <NavLink
+              to="/favorites"
+              className="text-white hover:text-gray-300 transition-colors duration-200"
+            >
               Mes favoris
             </NavLink>
           ) : null}
         </ul>
 
-        <div className="w-[30%] text-center flex items-center justify-end mr-4 z-10">
+        <div className="w-[30%] flex items-center justify-end space-x-4 mr-4 z-10">
           {userLoggedIn ? (
             <NavIsLogged isLogged={isLogged} setIsLogged={setIsLogged} />
           ) : (
             <NavNotLogged isClicked={isClicked} setIsClicked={setIsClicked} />
           )}
 
-          <input
-            type="text"
-            placeholder="Cherchez un film ...."
-            className={`p-1 rounded transition-all duration-300 ${
-              isClicked ? `w-40 opacity-100` : `w-0 opacity-0`
-            } overflow-hidden`}
-          />
-
-          <img
-            onClick={() => setIsClicked(!isClicked)}
-            src={loup}
-            alt="loup image"
-            className="w-6 cursor-pointer ml-2 "
-          />
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Cherchez un film ...."
+              className={`p-2 pl-10 rounded-full border border-gray-500 bg-gray-700 text-white transition-all duration-300 focus:outline-none ${
+                isClicked ? `w-64 opacity-100` : `w-0 opacity-0`
+              }`}
+            />
+            <img
+              onClick={() => setIsClicked(!isClicked)}
+              src={loup}
+              alt="loup image"
+              className="w-6 cursor-pointer absolute top-2 left-2"
+            />
+          </div>
         </div>
       </nav>
     </div>

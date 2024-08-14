@@ -20,6 +20,8 @@ function Favorites() {
           const listFavorites = response.data.favorites;
 
           setListData(JSON.parse(listFavorites));
+        } else {
+          navigate("/");
         }
       } catch (error) {
         console.error("failed to fetch :", error);
@@ -28,7 +30,7 @@ function Favorites() {
     getFavorites();
   }, [userId]);
 
-  return userId ? (
+  return (
     <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black min-h-screen flex flex-col">
       <Navbar />
 
@@ -67,8 +69,6 @@ function Favorites() {
         </div>
       </div>
     </div>
-  ) : (
-    navigate("/")
   );
 }
 

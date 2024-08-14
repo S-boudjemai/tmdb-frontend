@@ -81,11 +81,11 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
 
   return (
     <div
-      className="relative max-w-sm max-h-[600px] rounded-lg overflow-hidden shadow-lg bg-gray-800 text-white transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer "
+      className="relative max-w-sm max-h-[600px] rounded-lg overflow-hidden shadow-lg bg-gray-800 text-white transform transition-transform duration-300  cursor-pointer "
       onClick={handleClick}
     >
       <img
-        className="w-full h-60 object-cover"
+        className="w-full h-60 object-cover object-top hover:scale-105 transform transition-transform duration-300"
         src={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`

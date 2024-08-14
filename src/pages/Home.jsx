@@ -96,7 +96,7 @@ function Home({ isLogged, setIsLogged }) {
           {sortedMovies.map((movie) => (
             <div
               key={movie.id}
-              className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105"
+              className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform "
             >
               <MoviesCard
                 movie={movie}

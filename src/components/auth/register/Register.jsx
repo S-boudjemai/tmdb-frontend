@@ -54,7 +54,7 @@ function Register() {
   }
 
   return (
-    <div className="container mx-auto mt-10">
+    <div className="container mx-auto mt-10 h-screen flex items-center justify-center">
       <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto">
         <div className="mb-6">
           <label
