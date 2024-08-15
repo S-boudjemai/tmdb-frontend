@@ -28,11 +28,6 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
   const handleFavoriteClick = async (e) => {
     e.stopPropagation();
 
-    // Log des favoris actuels avant la mise à jour
-    console.log("Favoris actuels:", favorites);
-    console.log("Film actuel:", movie.id);
-    console.log("is favorite avant mise à jour ", isFavorite);
-
     let updatedFavorites;
 
     if (isFavorite) {
@@ -43,18 +38,12 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
       updatedFavorites = [...favorites, movie];
     }
 
-    // Log des nouveaux favoris après la mise à jour
-    console.log("Nouveaux favoris:", updatedFavorites);
-
     setIsFavorite(!isFavorite);
     setFavorites(updatedFavorites);
-
-    console.log(isFavorite);
 
     try {
       if (userId) {
         const url = `http://localhost:8081/users/favorites/${userId}`;
-        console.log("URL de la requête PUT :", url);
 
         await axios.put(url, {
           favorites: updatedFavorites,
@@ -65,12 +54,8 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
         );
         const favoritesData = response.data.favorites;
 
-        console.log("favoritesData :", favoritesData);
-
         setDataBaseFavorite(JSON.parse(favoritesData));
         setIsFavorite(updatedFavorites.some((fav) => fav.id === movie.id));
-
-        console.log("Favoris mis à jour avec succès");
       } else {
         console.error("userId est indéfini");
       }

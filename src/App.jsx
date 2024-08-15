@@ -14,6 +14,7 @@ import { AuthProvider } from "./contexts/authContext";
 import Login from "./components/auth/login/Login.jsx";
 import Register from "./components/auth/register/Register.jsx";
 import TestDb from "./pages/TestDb.jsx";
+import ActorPresentation from "./pages/ActorPresentation.jsx";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/movie/:id" element={<MoviePresentation />} />
             <Route path="/*" element={<NotFound />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/actor/:id" element={<ActorPresentation />} />
           </Routes>
         </BrowserRouter>
       </>

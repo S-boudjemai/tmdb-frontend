@@ -5,59 +5,15 @@
   height: 10px;
   margin: 0 5px;
 }
-
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
 .swiper-pagination-bullet-active {
   background-color: #ffffff;
   width: 12px;
   height: 12px;
-}
-.date-range-picker {
-  @apply p-4 max-w-xs rounded-lg shadow-lg bg-white border border-gray-200;
-}
-
-.date-range-picker .rdrDefinedRangesWrapper {
-  @apply space-y-2 mb-4; /* Ajout d'espacement entre les éléments */
-}
-
-.date-range-picker .rdrMonthAndYearPickers select {
-  @apply bg-gray-100 font-semibold text-gray-700 py-1 px-2 rounded-md mx-2;
-}
-
-.date-range-picker .rdrMonths {
-  @apply space-y-4; /* Espace entre les mois (au cas où plusieurs mois sont affichés) */
-}
-
-.date-range-picker .rdrDays {
-  @apply grid grid-cols-7 gap-2 border-t border-gray-200 pt-2; /* Disposition en grille avec un espacement */
-}
-
-.date-range-picker .rdrDayNumber span {
-  @apply flex items-center justify-center w-full h-full rounded-lg text-gray-800 font-medium;
-}
-
-.date-range-picker .rdrDayNumber span:hover {
-  @apply bg-green-500 text-white cursor-pointer;
-}
-
-.date-range-picker .rdrDayToday span {
-  @apply bg-blue-500 text-white rounded-full;
-}
-
-.date-range-picker .rdrSelected span {
-  @apply bg-green-500 text-white rounded-full;
-}
-
-.date-range-picker .rdrStartEdge span,
-.date-range-picker .rdrEndEdge span {
-  @apply bg-green-500 text-white rounded-l-full rounded-r-full;
-}
-
-.date-range-picker .rdrInRange span {
-  @apply bg-green-200 text-gray-900 rounded-full;
-}
-
-.date-range-picker .rdrWeekDay {
-  @apply text-xs font-semibold text-gray-500 uppercase;
 }
 
 @tailwind base;

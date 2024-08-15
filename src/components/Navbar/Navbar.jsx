@@ -7,73 +7,21 @@ import { useAuth } from "../../contexts/authContext";
 
 export default function Navbar({ isLogged, setIsLogged }) {
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedLi, setSelectedLi] = useState([]);
 
   const { userLoggedIn } = useAuth();
 
   // entrer le user à la co dans le local storage, et islogged change en fonction du local storage, test les fav dans le db par user ça peut être bien
 
-  function handleSelectedLi(index) {
-    setSelectedLi(selectedLi === index ? null : index);
-  }
-
-  const list = [
-    {
-      id: 1,
-      content: "Films",
-      SubCategories: [
-        "Les mieux notés",
-        "Les tops du moment",
-        "Par genre",
-        "A la une",
-      ],
-    },
-    {
-      id: 2,
-      content: "Séries télévisées",
-      SubCategories: [
-        "Les mieux notés",
-        "Les tops du moment",
-        "Par genre",
-        "A la une",
-      ],
-    },
-    {
-      id: 3,
-      content: "Acteurs",
-      SubCategories: [
-        "Les mieux notés",
-        "Les tops du moment",
-        "Par genre",
-        "A la une",
-      ],
-    },
-  ];
   return (
     <div className="w-full bg-slate-800 shadow-lg">
       <nav className="flex justify-between w-full p-4">
         <ul className="flex items-center space-x-8 ml-4">
-          {list.map((item, index) => (
-            <li
-              key={item.id}
-              className="relative cursor-pointer text-white hover:text-gray-300 transition-colors duration-200"
-              onClick={() => handleSelectedLi(index)}
-            >
-              {item.content}
-              {selectedLi === index && item.SubCategories?.length > 0 && (
-                <ul className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20">
-                  {item.SubCategories.map((subItem, subIndex) => (
-                    <li
-                      key={subIndex}
-                      className="p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
-                    >
-                      {subItem}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
+          <NavLink
+            to="/category"
+            className="text-white hover:text-gray-300 transition-colors duration-200"
+          >
+            Filtrer la recherche
+          </NavLink>
           {userLoggedIn ? (
             <NavLink
               to="/favorites"

@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import spinner from "../assets/spinner.svg";
 import image from "../assets/image.jpg";
+import ButtonHome from "../components/ButtonHome";
 
 const MoviePresentation = () => {
   const { id } = useParams(); // Récupérer l'id du film depuis l'URL
   const [movie, setMovie] = useState(null);
+  const [actor, setActor] = useState(null);
   const [credits, setCredits] = useState(null);
   const API_KEY = "f2aacbaffec6c04e80ab5fdf983b982d";
+  const navigate = useNavigate();
+
+  const handleClick = (actor) => {
+    navigate(`/actor/${actor.id}`);
+  };
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -24,6 +31,7 @@ const MoviePresentation = () => {
       );
       const data = await response.json();
       setCredits(data);
+      setActor(data.cast);
     };
 
     fetchMovie();
@@ -63,23 +71,19 @@ const MoviePresentation = () => {
               <strong>Durée :</strong> {movie.runtime} minutes
             </p>
           </div>
-          <NavLink
-            to="/"
-            className=" absolute bottom-10 mt-5 opacity-50 hover:opacity-100 hover:scale-105"
-          >
-            <span className="cursor-pointer p-3 bg-black rounded text-center z-10">
-              Retour
-            </span>
-          </NavLink>
+          <div className="mt-6">
+            <ButtonHome />
+          </div>
         </div>
       </div>
-      <div className="container mx-auto p-4">
+      <div className=" relative container mx-auto p-4">
         <h2 className="text-3xl font-bold mb-4">Acteurs principaux</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {credits.cast.slice(0, 12).map((actor) => (
             <div
               key={actor.id}
-              className="bg-gray-800 p-4 rounded-lg shadow-lg opacity-100"
+              className="bg-gray-800 p-4 rounded-lg shadow-lg  cursor-pointer"
+              onClick={() => handleClick(actor)}
             >
               <img
                 src={
@@ -90,6 +94,7 @@ const MoviePresentation = () => {
                 alt={actor.name}
                 className="w-full h-auto mb-2 rounded-lg"
               />
+
               <h3 className="text-lg font-bold">{actor.name}</h3>
               <p className="text-sm text-gray-400">{actor.character}</p>
             </div>
