@@ -4,22 +4,30 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import image from "../assets/image.jpg";
 import axios from "axios";
 import { useAuth } from "../contexts/authContext";
+import { DateFunction } from "../Functions/DateFunction";
 
 function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
   const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState();
+  const [dateToFormate, setDateToFormate] = useState();
   const { userId } = useAuth();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("databasefavorite : ", dataBaseFavorite);
-
     if (dataBaseFavorite) {
       setFavorites(dataBaseFavorite);
       setIsFavorite(dataBaseFavorite.some((fav) => fav.id === movie.id));
     }
   }, [dataBaseFavorite, movie.id]);
+
+  useEffect(() => {
+    if (movie && movie.release_date) {
+      setDateToFormate(movie.release_date);
+    }
+  }, [movie]);
+
+  const date = DateFunction({ dateToFormate });
 
   const handleClick = () => {
     navigate(`/movie/${movie.id}`);
@@ -94,12 +102,11 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
       <div className="p-6">
         <h2 className="text-2xl font-bold mb-2">{movie.title}</h2>
         <p className="text-gray-400 mb-2">
-          <span className="font-semibold">Release Date:</span>{" "}
-          {movie.release_date}
+          <span className="font-semibold">Release Date:</span> {date}
         </p>
         <p className="text-gray-400 mb-2">
           <span className="font-semibold">Rating:</span>{" "}
-          {movie.vote_average.toFixed(1)}
+          {movie.vote_average.toFixed(1)} / 10
         </p>
         <p className="text-gray-300 max-h-24 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-800">
           {movie.overview}

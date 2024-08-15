@@ -4,13 +4,11 @@ import NavIsLogged from "./NavIsLogged";
 import NavNotLogged from "./NavNotLogged";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
+import InputSearchNav from "./InputSearchNav";
 
 export default function Navbar({ isLogged, setIsLogged }) {
   const [isClicked, setIsClicked] = useState(false);
-
   const { userLoggedIn } = useAuth();
-
-  // entrer le user à la co dans le local storage, et islogged change en fonction du local storage, test les fav dans le db par user ça peut être bien
 
   return (
     <div className="w-full bg-slate-800 shadow-lg">
@@ -20,7 +18,7 @@ export default function Navbar({ isLogged, setIsLogged }) {
             to="/category"
             className="text-white hover:text-gray-300 transition-colors duration-200"
           >
-            Filtrer la recherche
+            Rechercher par filtre
           </NavLink>
           {userLoggedIn ? (
             <NavLink
@@ -40,13 +38,8 @@ export default function Navbar({ isLogged, setIsLogged }) {
           )}
 
           <div className="relative">
-            <input
-              type="text"
-              placeholder="Cherchez un film ...."
-              className={`p-2 pl-10 rounded-full border border-gray-500 bg-gray-700 text-white transition-all duration-300 focus:outline-none ${
-                isClicked ? `w-64 opacity-100` : `w-0 opacity-0`
-              }`}
-            />
+            <InputSearchNav isClicked={isClicked} setIsClicked={setIsClicked} />
+
             <img
               onClick={() => setIsClicked(!isClicked)}
               src={loup}

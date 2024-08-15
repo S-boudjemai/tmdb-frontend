@@ -15,6 +15,20 @@
   width: 12px;
   height: 12px;
 }
+/* Pour les navigateurs WebKit (Chrome, Safari) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pour Firefox */
+.scrollbar-hide {
+  scrollbar-width: none; /* Masque la barre de défilement */
+}
+
+/* Optionnel : Pour masquer la barre de défilement dans Internet Explorer 10+ */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Masque la barre de défilement */
+}
 
 @tailwind base;
 @tailwind components;

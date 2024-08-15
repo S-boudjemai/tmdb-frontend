@@ -6,10 +6,12 @@ import MoviesCard from "../components/MoviesCard";
 import { useAuth } from "../contexts/authContext";
 import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
+import { DateFunction } from "../Functions/DateFunction";
 
 function ActorPresentation() {
   const { id } = useParams(); // Récupérer l'id de l'acteur depuis l'URL
   const [actor, setActor] = useState(null);
+  const [dateToFormate, setDateToFormate] = useState();
   const [credits, setCredits] = useState([]);
   const API_KEY = "f2aacbaffec6c04e80ab5fdf983b982d";
   const [dataBaseFavorite, setDataBaseFavorite] = useState([]);
@@ -59,6 +61,14 @@ function ActorPresentation() {
     fetchActorDetails();
   }, [id]);
 
+  useEffect(() => {
+    if (actor && actor.birthday) {
+      setDateToFormate(actor.birthday);
+    }
+  }, [actor]);
+
+  const date = DateFunction({ dateToFormate });
+
   if (!actor)
     return (
       <img src={spinner} alt="icone de chargement" className="mx-auto mt-20" />
@@ -92,7 +102,7 @@ function ActorPresentation() {
 
           <div className="flex flex-col sm:flex-row justify-between">
             <p className={`mb-2 sm:mb-0 ${!actor.biography ? "mt-4" : ""}`}>
-              <strong>Date de naissance :</strong> {actor.birthday || "N/A"}
+              <strong>Date de naissance :</strong> {date || "N/A"}
             </p>
             <p
               className={`mb-2 sm:mb-0 ${!actor.biography ? "mt-4 ml-7" : ""}`}

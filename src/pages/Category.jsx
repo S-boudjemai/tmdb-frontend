@@ -7,7 +7,7 @@ import ButtonHome from "../components/ButtonHome";
 import PerYear from "../components/Filters/PerYear";
 import PerAgeRating from "../components/Filters/PerAgeRating";
 import PerDuration from "../components/Filters/PerDuration";
-import { buildApiUrl } from "../components/UrlFunction";
+import { buildApiUrl } from "../Functions/UrlFunction";
 import PerGenre from "../components/Filters/PerGenre";
 import PerLanguage from "../components/Filters/PerLanguage";
 

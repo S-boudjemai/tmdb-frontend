@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import spinner from "../assets/spinner.svg";
-import image from "../assets/image.jpg";
 import ButtonHome from "../components/ButtonHome";
+import ActorsCard from "../components/ActorsCard";
+import { DateFunction } from "../Functions/DateFunction";
 
 const MoviePresentation = () => {
   const { id } = useParams(); // Récupérer l'id du film depuis l'URL
+  const [dateToFormate, setDateToFormate] = useState();
   const [movie, setMovie] = useState(null);
   const [actor, setActor] = useState(null);
   const [credits, setCredits] = useState(null);
@@ -38,6 +40,14 @@ const MoviePresentation = () => {
     fetchCredits();
   }, [id]);
 
+  useEffect(() => {
+    if (movie && movie.release_date) {
+      setDateToFormate(movie.release_date);
+    }
+  }, [movie]);
+
+  const date = DateFunction({ dateToFormate });
+
   if (!movie || !credits)
     return (
       <img src={spinner} alt="icone de chargement" className="mx-auto mt-20" />
@@ -62,7 +72,7 @@ const MoviePresentation = () => {
           <p className="text-lg mb-4">{movie.overview}</p>
           <div className="flex flex-col sm:flex-row justify-between">
             <p className="mb-2 sm:mb-0">
-              <strong>Date de sortie :</strong> {movie.release_date}
+              <strong>Date de sortie :</strong> {date}
             </p>
             <p className="mb-2 sm:mb-0">
               <strong>Note moyenne :</strong> {movie.vote_average} / 10
@@ -85,18 +95,7 @@ const MoviePresentation = () => {
               className="bg-gray-800 p-4 rounded-lg shadow-lg  cursor-pointer"
               onClick={() => handleClick(actor)}
             >
-              <img
-                src={
-                  actor.profile_path
-                    ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-                    : image
-                }
-                alt={actor.name}
-                className="w-full h-auto mb-2 rounded-lg"
-              />
-
-              <h3 className="text-lg font-bold">{actor.name}</h3>
-              <p className="text-sm text-gray-400">{actor.character}</p>
+              <ActorsCard actor={actor} />
             </div>
           ))}
         </div>
