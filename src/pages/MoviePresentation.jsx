@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import spinner from "../assets/spinner.svg";
 import ButtonHome from "../components/ButtonHome";
-import ActorsCard from "../components/ActorsCard";
+import ActorsCard from "../components/Cards/ActorsCard";
 import { DateFunction } from "../Functions/DateFunction";
 
 const MoviePresentation = () => {

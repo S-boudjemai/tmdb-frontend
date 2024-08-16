@@ -1,4 +1,4 @@
-import image from "../assets/image.jpg";
+import image from "../../assets/image.jpg";
 
 function ActorsCard({ actor }) {
   return (

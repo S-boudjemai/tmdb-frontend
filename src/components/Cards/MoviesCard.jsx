@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import image from "../assets/image.jpg";
+import image from "../../assets/image.jpg";
 import axios from "axios";
-import { useAuth } from "../contexts/authContext";
-import { DateFunction } from "../Functions/DateFunction";
+
+import { useAuth } from "../../contexts/authContext";
+import { DateFunction } from "../../Functions/DateFunction";
 
 function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
   const [favorites, setFavorites] = useState([]);

@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ButtonHome from "../components/ButtonHome"; // Si vous avez un bouton de retour à la maison
 import spinner from "../assets/spinner.svg"; // Assurez-vous d'avoir un spinner ou remplacez par un autre visuel
-import MoviesCard from "../components/MoviesCard";
+
 import { useAuth } from "../contexts/authContext";
 import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
 import { DateFunction } from "../Functions/DateFunction";
+import MoviesCard from "../components/Cards/MoviesCard";
 
 function ActorPresentation() {
   const { id } = useParams(); // Récupérer l'id de l'acteur depuis l'URL

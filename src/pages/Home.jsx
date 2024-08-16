@@ -1,11 +1,13 @@
 import InputSearch from "../components/InputSearch";
-import MoviesCard from "../components/MoviesCard";
+
 import Navbar from "../components/Navbar/Navbar";
-import ActiveSlider from "../components/ActiveSlider";
+
 import SortMovies from "../components/SortMovies";
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/authContext";
 import axios from "axios";
+import MoviesCard from "../components/Cards/MoviesCard";
+import ActiveSlider from "../components/Cards/ActiveSlider";
 
 function Home({ isLogged, setIsLogged }) {
   const [sortedMovies, setSortedMovies] = useState([]);

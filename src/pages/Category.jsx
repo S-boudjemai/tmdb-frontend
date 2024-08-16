@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
-import MoviesCard from "../components/MoviesCard";
+
 import { useAuth } from "../contexts/authContext";
 import ButtonHome from "../components/ButtonHome";
 import PerYear from "../components/Filters/PerYear";
@@ -10,6 +10,7 @@ import PerDuration from "../components/Filters/PerDuration";
 import { buildApiUrl } from "../Functions/UrlFunction";
 import PerGenre from "../components/Filters/PerGenre";
 import PerLanguage from "../components/Filters/PerLanguage";
+import MoviesCard from "../components/Cards/MoviesCard";
 
 function Category() {
   const [data, setData] = useState([]);
