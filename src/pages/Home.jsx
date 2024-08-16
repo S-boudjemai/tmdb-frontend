@@ -28,27 +28,6 @@ function Home({ isLogged, setIsLogged }) {
   }, [input]);
 
   useEffect(() => {
-    if (movie && movie.length > 0) {
-      setSortedMovies(movie);
-    }
-  }, [movie]);
-
-  // j'ai ajouté ça parce que la map de sortedmovies me renvoyait rien, si je navais pas cliqué sur une card du slider et revenu en arrière
-
-  const handleSort = (order) => {
-    console.log("order :", order);
-
-    const sorted = [...sortedMovies].sort((a, b) => {
-      if (order === "top") {
-        return b.vote_average - a.vote_average;
-      } else {
-        return a.vote_average - b.vote_average;
-      }
-    });
-    setSortedMovies(sorted);
-  };
-
-  useEffect(() => {
     const fetchFavorites = async () => {
       // fetch les favoris
       try {
@@ -81,7 +60,11 @@ function Home({ isLogged, setIsLogged }) {
         </h1>
         <div className="flex flex-col sm:flex-row items-center mt-8 w-full">
           <div className="flex justify-start sm:flex-1">
-            <SortMovies onSort={handleSort} />
+            <SortMovies
+              setSortedMovies={setSortedMovies}
+              movie={movie}
+              sortedMovies={sortedMovies}
+            />
           </div>
           <div className="flex justify-center sm:flex-1 mt-4 sm:mt-0">
             <div className="w-full sm:max-w-[1200px]">

@@ -13,7 +13,6 @@ import Favorites from "./pages/Favorites";
 import { AuthProvider } from "./contexts/authContext";
 import Login from "./components/auth/login/Login.jsx";
 import Register from "./components/auth/register/Register.jsx";
-import TestDb from "./pages/TestDb.jsx";
 import ActorPresentation from "./pages/ActorPresentation.jsx";
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
       <>
         <BrowserRouter>
           <Routes>
-            <Route path="/test" element={<TestDb />} />
             <Route path="/" element={<Home />} />
             <Route path="/account-params" element={<AccountParams />} />
             <Route path="/user-profil" element={<UserProfil />} />

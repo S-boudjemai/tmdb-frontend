@@ -1,4 +1,6 @@
+import FormChangePassword from "../components/auth/ResetPassword/FormChangePassword";
+
 function AccountParams() {
-  return <div>AccountParams</div>;
+  return <FormChangePassword />;
 }
 export default AccountParams;
