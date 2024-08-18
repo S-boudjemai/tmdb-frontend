@@ -2,7 +2,7 @@ import { useState } from "react";
 import { resetPassword } from "./ResetPassword";
 import ButtonHome from "../../ButtonHome";
 
-function FormChangePassword() {
+function FormChangePassword({ setActiveOption }) {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -94,9 +94,6 @@ function FormChangePassword() {
           </p>
         )}
       </form>
-      <div className="mt-6">
-        <ButtonHome />
-      </div>
     </div>
   );
 }

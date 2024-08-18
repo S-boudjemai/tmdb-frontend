@@ -1,23 +1,27 @@
-import { CiUser } from "react-icons/ci";
 import { NavLink, useNavigate } from "react-router-dom";
 import { doSignOut } from "../../firebase/auth";
 import { useAuth } from "../../contexts/authContext";
 import { useState } from "react";
+import GetImageProfil from "../GetImageProfil";
 
 function NavIsLogged() {
-  const { userLoggedIn } = useAuth();
+  const { userLoggedIn, username } = useAuth();
   const [profilList, setProfilList] = useState(false);
 
   const navigate = useNavigate();
 
   return (
     <div className="relative">
-      <div className="flex items-center">
-        <CiUser
+      <div className="flex items-center ">
+        <div
           onClick={() => setProfilList(!profilList)}
-          className="cursor-pointer text-white mr-3"
-          size={27}
-        />
+          className="flex justify-center flex-row-reverse"
+        >
+          <GetImageProfil className="w-[50px] h-[50px]  rounded-full cursor-pointer" />
+          <p className="text-xl text-white mr-4 text-center mt-2 cursor-pointer">
+            {username}
+          </p>
+        </div>
 
         {userLoggedIn && profilList ? (
           <div className="absolute top-full right-0 mt-2 w-48 bg-white text-black shadow-lg border border-gray-300 rounded-lg">

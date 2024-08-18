@@ -48,7 +48,7 @@ function Favorites() {
           </span>
         </NavLink>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-12">
-          {listData ? (
+          {listData && listData.length > 0 ? (
             listData.map((movie) => (
               <div
                 key={movie.id}

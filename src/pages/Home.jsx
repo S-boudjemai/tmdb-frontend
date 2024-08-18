@@ -8,6 +8,8 @@ import { useAuth } from "../contexts/authContext";
 import axios from "axios";
 import MoviesCard from "../components/Cards/MoviesCard";
 import ActiveSlider from "../components/Cards/ActiveSlider";
+import ImageUpload from "../components/ImageUpload";
+import GetImageProfil from "../components/GetImageProfil";
 
 function Home({ isLogged, setIsLogged }) {
   const [sortedMovies, setSortedMovies] = useState([]);

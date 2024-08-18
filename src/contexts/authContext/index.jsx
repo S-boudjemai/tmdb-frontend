@@ -13,6 +13,8 @@ export function AuthProvider({ children }) {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [isEmailUser, setIsEmailUser] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [imageURL, setImageURL] = useState(null);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, initializeUser);
@@ -29,9 +31,13 @@ export function AuthProvider({ children }) {
       setIsEmailUser(isEmail);
 
       setUserLoggedIn(true);
+
+      setUsername(user.displayName || null);
     } else {
       setCurrentUser(null);
+      setUsername(null);
       setUserLoggedIn(false);
+      setImageURL(null);
     }
 
     setLoading(false);
@@ -43,6 +49,10 @@ export function AuthProvider({ children }) {
     userLoggedIn,
     setUserLoggedIn,
     loading,
+    setImageURL,
+    imageURL,
+    username,
+    setUsername,
     userId: currentUser ? currentUser.uid : null,
   };
 
