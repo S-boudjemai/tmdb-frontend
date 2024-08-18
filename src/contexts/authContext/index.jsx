@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
 
       setUserLoggedIn(true);
 
-      setUsername(user.displayName || null);
+      setUsername(user.displayName || "Pseudo");
     } else {
       setCurrentUser(null);
       setUsername(null);
