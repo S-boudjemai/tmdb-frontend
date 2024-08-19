@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-
 import axios from "axios";
 import React from "react";
-
+import image from "../../assets/image.jpg";
 import { useAuth } from "../../contexts/authContext";
 import { DateFunction } from "../../Functions/DateFunction";
 import { Movie } from "../../types";
@@ -14,13 +13,15 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
   const [isFavorite, setIsFavorite] = useState<boolean>();
   const [dateToFormate, setDateToFormate] = useState<string | undefined>();
   const { userId } = useAuth();
-  const image = require("../../assets/image.jpg").default;
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (dataBaseFavorite) {
       setFavorites(dataBaseFavorite);
-      setIsFavorite(dataBaseFavorite.some((fav) => fav.id === movie.id));
+      setIsFavorite(
+        dataBaseFavorite.some((fav: { id: any }) => fav.id === movie.id)
+      );
     }
   }, [dataBaseFavorite, movie.id]);
 
@@ -39,7 +40,7 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
   const handleFavoriteClick = async (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
 
-    let updatedFavorites;
+    let updatedFavorites: any[] | ((prevState: Movie[]) => Movie[]);
 
     if (isFavorite) {
       updatedFavorites = favorites.filter(
@@ -66,7 +67,9 @@ function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
         const favoritesData = response.data.favorites;
 
         setDataBaseFavorite(JSON.parse(favoritesData));
-        setIsFavorite(updatedFavorites.some((fav) => fav.id === movie.id));
+        setIsFavorite(
+          updatedFavorites.some((fav: { id: any }) => fav.id === movie.id)
+        );
       } else {
         console.error("userId est indéfini");
       }

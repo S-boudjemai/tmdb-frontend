@@ -1,19 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import React from "react";
+import { Genre } from "../../types";
 
-interface Genre {
-  id: number;
-  name: string;
-}
-
-function PerGenre({ setSelectedGenre, selectedGenre }) {
+function PerGenre({ setSelectedGenre }) {
   const [genres, setGenres] = useState<Genre[]>([]);
 
-  const handleGenreChange = (genreId) => {
-    setSelectedGenre((prev) =>
+  const handleGenreChange = (genreId: number) => {
+    setSelectedGenre((prev: any[]) =>
       prev.includes(genreId)
-        ? prev.filter((id) => id !== genreId)
+        ? prev.filter((id: any) => id !== genreId)
         : [...prev, genreId]
     );
   };

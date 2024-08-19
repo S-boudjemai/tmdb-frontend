@@ -8,7 +8,7 @@ import { useAuth } from "../../contexts/authContext";
 import InputSearchNav from "./InputSearchNav";
 
 export default function Navbar({}) {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
   const { userLoggedIn } = useAuth();
 
   return (

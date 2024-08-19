@@ -8,7 +8,7 @@ import GetImageProfil from "../GetImageProfil";
 
 function NavIsLogged() {
   const { userLoggedIn, username, imageURL } = useAuth();
-  const [profilList, setProfilList] = useState(false);
+  const [profilList, setProfilList] = useState<boolean>(false);
 
   const navigate = useNavigate();
 

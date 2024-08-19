@@ -6,7 +6,7 @@ import { Movie } from "../../types";
 function InputSearchNav({ isClicked, setIsClicked }) {
   const [movieList, setMovieList] = useState<Movie[]>([]);
   const [movie, setMovie] = useState<Movie[]>([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string>("");
   const navigate = useNavigate();
 
   const handleClick = (movie: Movie) => {

@@ -8,6 +8,7 @@ function UpdateUsername({}) {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { setUsername } = useAuth();
+
   const handleUpdateUsername = () => {
     const auth = getAuth();
     const user = auth.currentUser;

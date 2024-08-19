@@ -2,19 +2,7 @@ import React, { ReactNode } from "react";
 import { useEffect, useState, useContext } from "react";
 import { auth } from "../../firebase/firebase";
 import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
-
-interface AuthContextType {
-  isEmailUser: boolean;
-  currentUser: FirebaseUser | null;
-  userLoggedIn: boolean;
-  setUserLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  loading: boolean;
-  setImageURL: React.Dispatch<React.SetStateAction<string | null>>;
-  imageURL: string | null;
-  username: string | null;
-  setUsername: React.Dispatch<React.SetStateAction<string | null>>;
-  userId: string | null;
-}
+import { AuthContextType } from "../../types";
 
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 

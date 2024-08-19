@@ -7,26 +7,13 @@ import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
 import { DateFunction } from "../Functions/DateFunction";
 import MoviesCard from "../components/Cards/MoviesCard";
-import { Movie } from "../types";
-
-interface Actor {
-  id: number;
-  name: string;
-  profile_path: string | null;
-  biography: string;
-  birthday: string | null;
-  place_of_birth: string | null;
-}
-
-interface Credits {
-  cast: Movie[];
-}
+import { Movie, Actor, Credits } from "../types";
 
 function ActorPresentation() {
   const { id } = useParams<{ id: string }>(); // Typage de `id` comme chaîne
   const [actor, setActor] = useState<Actor | null>(null);
   const [dateToFormate, setDateToFormate] = useState<string | null>(null);
-  const [credits, setCredits] = useState<Movie[]>([]);
+  const [credits, setCredits] = useState<Movie[] | Actor[]>([]);
   const API_KEY = "f2aacbaffec6c04e80ab5fdf983b982d";
   const [dataBaseFavorite, setDataBaseFavorite] = useState<Movie[]>([]);
   const { userId } = useAuth();

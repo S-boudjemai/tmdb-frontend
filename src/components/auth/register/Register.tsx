@@ -13,7 +13,7 @@ function Register() {
   const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate(); // Utilisez cette fonction pour la navigation.
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (password !== passwordConfirmation) {
       setErrorMessage("Les mots de passe ne correspondent pas.");

@@ -26,7 +26,7 @@ function PerLanguage({ selectedLanguages, setSelectedLanguages }) {
       .catch((error) => console.error("Error fetching languages:", error));
   }, []);
 
-  const handleLanguageChange = (languageCode) => {
+  const handleLanguageChange = (languageCode: string) => {
     if (selectedLanguages.includes(languageCode)) {
       setSelectedLanguages([]); // Désélectionne tout si la même langue est cliquée
     } else {

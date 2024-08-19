@@ -20,9 +20,9 @@ function Category() {
   const [query, setQuery] = useState("");
   const [selectedGenre, setSelectedGenre] = useState([]);
   const [selectedLanguages, setSelectedLanguages] = useState([]);
-  const [selectedAgeRating, setSelectedAgeRating] = useState(18);
-  const [minDuration, setMinDuration] = useState(60); // Durée minimale par défaut (60 minutes)
-  const [maxDuration, setMaxDuration] = useState(180); // Durée maximale par défaut (180 minutes)
+  const [selectedAgeRating, setSelectedAgeRating] = useState<number>(18);
+  const [minDuration, setMinDuration] = useState<number>(60); // Durée minimale par défaut (60 minutes)
+  const [maxDuration, setMaxDuration] = useState<number>(180); // Durée maximale par défaut (180 minutes)
   const { userId } = useAuth();
   const [dataBaseFavorite, setDataBaseFavorite] = useState<Movie[]>([]);
 
@@ -97,10 +97,7 @@ function Category() {
               endYear={endYear}
               setEndYear={setEndYear}
             />
-            <PerGenre
-              selectedGenre={selectedGenre}
-              setSelectedGenre={setSelectedGenre}
-            />
+            <PerGenre setSelectedGenre={setSelectedGenre} />
             <PerLanguage
               selectedLanguages={selectedLanguages}
               setSelectedLanguages={setSelectedLanguages}

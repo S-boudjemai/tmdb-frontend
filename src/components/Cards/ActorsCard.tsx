@@ -1,11 +1,5 @@
 import React from "react";
-
-interface Actor {
-  id: number;
-  name: string;
-  profile_path: string | null;
-  character: string;
-}
+import { Actor } from "../../types";
 
 function ActorsCard({ actor }: { actor: Actor }) {
   const image = require("../../assets/image.jpg").default;
