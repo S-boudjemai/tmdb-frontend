@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import axios from "axios";
-import React from "react";
 import image from "../../assets/image.jpg";
 import { useAuth } from "../../contexts/authContext";
 import { DateFunction } from "../../Functions/DateFunction";

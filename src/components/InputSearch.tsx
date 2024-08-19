@@ -1,7 +1,7 @@
 import React from "react";
 
 function InputSearch({ input, setInput }) {
-  function handleSearch(e) {
+  function handleSearch(e: { target: { value: any } }) {
     if (input.length === 0) {
       setInput("fast");
     } else {

@@ -5,17 +5,6 @@ import ActorsCard from "../components/Cards/ActorsCard";
 import { DateFunction } from "../Functions/DateFunction";
 import { Movie, Actor, Credits } from "../types";
 
-// interface Actor {
-//   id: number;
-//   name: string;
-//   profile_path: string | null;
-//   character: string;
-// }
-
-// interface Credits {
-//   cast: Actor[];
-// }
-
 const MoviePresentation = () => {
   const { id } = useParams<{ id: string }>(); // Récupérer l'id du film depuis l'URL
   const [dateToFormate, setDateToFormate] = useState<string | null>(null);

@@ -1,6 +1,6 @@
+import React from "react";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import React from "react";
 
 function MoviesCardSlider({ movie, className }) {
   const navigate = useNavigate();

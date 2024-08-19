@@ -44,7 +44,10 @@ function Register() {
         navigate("/"); // Redirection après inscription
       } catch (error) {
         setIsRegistering(false);
-        setErrorMessage(error.message);
+
+        if (error instanceof Error) {
+          setErrorMessage(error.message);
+        }
       }
     }
   };

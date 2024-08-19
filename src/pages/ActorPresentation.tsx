@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ButtonHome from "../components/ButtonHome"; // Si vous avez un bouton de retour à la maison
-import spinner from "../assets/spinner.svg"; // Assurez-vous d'avoir un spinner ou remplacez par un autre visuel
+import ButtonHome from "../components/ButtonHome";
+import spinner from "../assets/spinner.svg";
 import { useAuth } from "../contexts/authContext";
 import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
