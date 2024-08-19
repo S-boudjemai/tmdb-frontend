@@ -4,6 +4,7 @@ import ButtonHome from "../components/ButtonHome";
 import ActorsCard from "../components/Cards/ActorsCard";
 import { DateFunction } from "../Functions/DateFunction";
 import { Movie, Actor, Credits } from "../types";
+import spinner from "../assets/spinner.svg";
 
 const MoviePresentation = () => {
   const { id } = useParams<{ id: string }>(); // Récupérer l'id du film depuis l'URL
@@ -12,7 +13,6 @@ const MoviePresentation = () => {
   const [credits, setCredits] = useState<Credits | null>(null);
   const API_KEY = "f2aacbaffec6c04e80ab5fdf983b982d";
   const navigate = useNavigate();
-  const spinner = require("../assets/spinner.svg").default;
 
   const handleClick = (actor: Actor) => {
     navigate(`/actor/${actor.id}`);

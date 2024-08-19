@@ -1,6 +1,6 @@
-const express = require("express");
-const mysql = require("mysql");
-const cors = require("cors");
+import express from "express";
+import mysql from "mysql";
+import cors from "cors";
 const PORT = 8081;
 require("dotenv").config();
 
@@ -32,14 +32,14 @@ app.get("/", (req: any, res: { json: (arg0: string) => any }) => {
 
 //  IMPORTATION DES ROUTES TABLE TMDB //
 
-const addUser = require("./routes/users/addUser");
-const updateFavorites = require("./routes/users/updateFavorites");
-const checkUser = require("./routes/users/checkUser");
-const getFavorites = require("./routes/users/getFavorites");
+import addUser from "./routes/addUser";
+import updateFavorites from "./routes/updateFavorites";
+import checkUser from "./routes/checkUser";
+import getFavorites from "./routes/getFavorites";
 
 app.use("/", addUser);
 app.use("/", updateFavorites);
-app.use("/users", checkUser);
+app.use("/", checkUser);
 app.use("/", getFavorites);
 
 app.get("/test", (req: any, res: { send: (arg0: string) => void }) => {

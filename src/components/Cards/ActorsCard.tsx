@@ -1,8 +1,9 @@
 import React from "react";
+import image from "../../assets/image.jpg"
 import { Actor } from "../../types";
+import spinner from "../../assets/spinner.svg";
 
 function ActorsCard({ actor }: { actor: Actor }) {
-  const image = require("../../assets/image.jpg").default;
   return (
     <div>
       <img

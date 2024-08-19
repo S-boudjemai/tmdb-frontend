@@ -1,3 +1,16 @@
+import express, { Request, Response } from "express";
+import mysql from "mysql";
+
+const router = express.Router();
+
+// Configuration de la base de données (assumant que la configuration db est déjà établie ailleurs)
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "6Z:3r%3FUht=",
+  database: "tmdb_db",
+});
+
 db.connect((err: any) => {
   if (err) {
     console.error("Erreur de connexion à la base de données :", err);
@@ -8,19 +21,7 @@ db.connect((err: any) => {
 
 router.get(
   "/users/favorites/:id_firebase",
-  (
-    req: { params: { id_firebase: any } },
-    res: {
-      status: (arg0: number) => {
-        (): any;
-        new (): any;
-        json: {
-          (arg0: { message?: string; favorites?: any }): void;
-          new (): any;
-        };
-      };
-    }
-  ) => {
+  (req: Request<{ id_firebase: string }>, res: Response) => {
     const { id_firebase } = req.params;
     // récupérer les favoris selon l'id
 
@@ -43,4 +44,4 @@ router.get(
   }
 );
 
-module.exports = router;
+export default router;
