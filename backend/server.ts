@@ -16,7 +16,7 @@ const db = mysql.createConnection({
 });
 // ici je crée la connexion avec la database
 
-db.connect((err) => {
+db.connect((err: any) => {
   if (err) {
     console.error("erreur de connexion à la db", err);
     return;
@@ -25,7 +25,7 @@ db.connect((err) => {
 });
 // ici établit la connexion et vérifie les erreurs
 
-app.get("/", (req, res) => {
+app.get("/", (req: any, res: { json: (arg0: string) => any }) => {
   return res.json("from backend side");
 });
 // route de test pour vérifier que le serveur fonctionne
@@ -42,7 +42,7 @@ app.use("/", updateFavorites);
 app.use("/users", checkUser);
 app.use("/", getFavorites);
 
-app.get("/test", (req, res) => {
+app.get("/test", (req: any, res: { send: (arg0: string) => void }) => {
   res.send("Route de test atteinte");
 });
 
