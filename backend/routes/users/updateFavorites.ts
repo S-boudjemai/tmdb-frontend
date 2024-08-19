@@ -1,13 +1,4 @@
-const express = require("express");
 const router = express.Router();
-const mysql = require("mysql");
-
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "6Z:3r%3FUht=",
-  database: "tmdb_db",
-});
 
 router.put("/users/favorites/:id_firebase", (req, res) => {
   const { id_firebase } = req.params;

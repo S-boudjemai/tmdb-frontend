@@ -1,15 +1,4 @@
-const express = require("express");
-const router = express.Router();
-const mysql = require("mysql");
-
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "6Z:3r%3FUht=",
-  database: "tmdb_db",
-});
-
-db.connect((err) => {
+db.connect((err: any) => {
   if (err) {
     console.error("Erreur de connexion à la base de données :", err);
     process.exit(1);

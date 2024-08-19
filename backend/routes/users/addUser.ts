@@ -1,14 +1,3 @@
-const express = require("express");
-const router = express.Router();
-const mysql = require("mysql");
-
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "6Z:3r%3FUht=",
-  database: "tmdb_db",
-});
-
 // post l'id
 router.post("/users/addUser", (req, res) => {
   console.log("requête reçu add user");
