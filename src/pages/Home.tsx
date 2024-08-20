@@ -1,5 +1,4 @@
 import InputSearch from "../components/InputSearch";
-import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import SortMovies from "../components/SortMovies";
 import { useEffect, useState } from "react";
@@ -7,8 +6,7 @@ import { useAuth } from "../contexts/authContext";
 import axios from "axios";
 import MoviesCard from "../components/Cards/MoviesCard";
 import ActiveSlider from "../components/Cards/ActiveSlider";
-import { Movie } from "../types";
-
+import { Movie } from "@types";
 function Home({}) {
   const [sortedMovies, setSortedMovies] = useState<Movie[]>([]);
   const [movie, setMovie] = useState<Movie[]>([]);

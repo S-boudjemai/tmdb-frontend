@@ -1,5 +1,3 @@
-import React from "react";
-
 function Confirmation({ inputStates, setInputStates, showValidation }) {
   return (
     <>

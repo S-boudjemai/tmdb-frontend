@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import React from "react";
 
 interface Language {
   iso_639_1: string;

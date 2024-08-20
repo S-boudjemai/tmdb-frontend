@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { CiUser } from "react-icons/ci";
 import { doSignOut } from "../../firebase/auth";

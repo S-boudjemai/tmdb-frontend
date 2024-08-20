@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { auth, storage } from "../firebase/firebase";
-import React from "react";
 import { getDownloadURL, ref } from "firebase/storage";
 import { useAuth } from "../contexts/authContext";
 

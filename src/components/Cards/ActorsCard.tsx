@@ -1,7 +1,5 @@
-import React from "react";
-import image from "../../assets/image.jpg"
-import { Actor } from "../../types";
-import spinner from "../../assets/spinner.svg";
+import image from "../../assets/image.jpg";
+import { Actor } from "@types";
 
 function ActorsCard({ actor }: { actor: Actor }) {
   return (

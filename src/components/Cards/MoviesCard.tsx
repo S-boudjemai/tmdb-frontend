@@ -4,8 +4,8 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import axios from "axios";
 import image from "../../assets/image.jpg";
 import { useAuth } from "../../contexts/authContext";
-import { DateFunction } from "../../Functions/DateFunction";
-import { Movie } from "../../types";
+import { DateFunction } from "../../utils/DateFunction";
+import { Movie } from "@types";
 
 function MoviesCard({ movie, dataBaseFavorite, setDataBaseFavorite }) {
   const [favorites, setFavorites] = useState<Movie[]>([]);

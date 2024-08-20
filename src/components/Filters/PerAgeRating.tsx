@@ -1,5 +1,3 @@
-import React from "react";
-
 function PerAgeRating({ selectedAgeRating, setSelectedAgeRating }) {
   return (
     <li>

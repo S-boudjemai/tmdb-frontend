@@ -1,4 +1,3 @@
-import React from "react";
 import loup from "../../assets/icon-loup.svg";
 import { useState } from "react";
 import NavIsLogged from "./NavIsLogged";

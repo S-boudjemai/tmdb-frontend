@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ButtonHome from "../components/ButtonHome";
 import spinner from "../assets/spinner.svg";
 import { useAuth } from "../contexts/authContext";
 import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
-import { DateFunction } from "../Functions/DateFunction";
+import { DateFunction } from "../utils/DateFunction";
 import MoviesCard from "../components/Cards/MoviesCard";
-import { Movie, Actor, Credits } from "../types";
+import { Movie } from "@types";
+import { Actor, Credits } from "@types";
 
 function ActorPresentation() {
   const { id } = useParams<{ id: string }>(); // Typage de `id` comme chaîne

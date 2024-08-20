@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import React from "react";
 
 function SortMovies({ movie, setSortedMovies, sortedMovies }) {
   useEffect(() => {

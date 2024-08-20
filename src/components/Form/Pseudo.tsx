@@ -1,5 +1,3 @@
-import React from "react";
-
 function Pseudo({ inputStates, setInputStates, showValidation }) {
   return (
     <>

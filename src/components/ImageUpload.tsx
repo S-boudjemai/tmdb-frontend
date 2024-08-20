@@ -3,7 +3,6 @@ import { useState } from "react";
 import { auth, storage } from "../firebase/firebase";
 import GetImageProfil from "./GetImageProfil";
 import { useAuth } from "../contexts/authContext";
-import React from "react";
 
 function ImageUpload({}) {
   const [image, setImage] = useState<File | null>(null);

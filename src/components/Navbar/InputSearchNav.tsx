@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import React from "react";
-import { Movie } from "../../types";
+import { Movie } from "@types";
 
 function InputSearchNav({ isClicked, setIsClicked }) {
   const [movieList, setMovieList] = useState<Movie[]>([]);

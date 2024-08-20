@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import React from "react";
-import { Genre } from "../../types";
+import { Genre } from "@types";
 
 function PerGenre({ setSelectedGenre }) {
   const [genres, setGenres] = useState<Genre[]>([]);

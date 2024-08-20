@@ -1,23 +1,7 @@
 import express, { Request, Response } from "express";
-import mysql from "mysql";
+import db from "../utils/db";
 
 const router = express.Router();
-
-// Configuration de la base de données (assumant que la configuration db est déjà établie ailleurs)
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "6Z:3r%3FUht=",
-  database: "tmdb_db",
-});
-
-db.connect((err: any) => {
-  if (err) {
-    console.error("Erreur de connexion à la base de données :", err);
-    process.exit(1);
-  }
-  console.log("Connecté à la base de données");
-});
 
 router.get(
   "/users/favorites/:id_firebase",

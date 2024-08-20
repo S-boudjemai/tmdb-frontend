@@ -11,7 +11,6 @@ import { AuthProvider } from "./contexts/authContext/index.js";
 import Login from "./components/auth/login/Login.js";
 import Register from "./components/auth/register/Register.js";
 import ActorPresentation from "./pages/ActorPresentation.js";
-import React from "react";
 
 function App() {
   return (

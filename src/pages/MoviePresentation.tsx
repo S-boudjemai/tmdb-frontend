@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ButtonHome from "../components/ButtonHome";
 import ActorsCard from "../components/Cards/ActorsCard";
-import { DateFunction } from "../Functions/DateFunction";
-import { Movie, Actor, Credits } from "../types";
+import { DateFunction } from "../utils/DateFunction";
+import { Actor, Credits } from "@types";
+import { Movie } from "@types";
 import spinner from "../assets/spinner.svg";
 
 const MoviePresentation = () => {

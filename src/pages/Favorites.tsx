@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
 import { useAuth } from "../contexts/authContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import MoviesCard from "../components/Cards/MoviesCard";
-import { Movie } from "../types";
+import { Movie } from "@types";
 
 function Favorites() {
   const [listData, setListData] = useState<Movie[]>([]);

@@ -1,5 +1,3 @@
-import React from "react";
-
 function Password({ inputStates, setInputStates, showValidation }) {
   return (
     <>

@@ -1,12 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import React from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import { FreeMode, Pagination } from "swiper/modules";
 import MoviesCardSlider from "./MoviesCardSlider";
 import { useEffect, useState } from "react";
-import { Movie } from "../../types";
+import { Movie } from "@types";
 
 function ActiveSlider() {
   const [data, setData] = useState<Movie[]>([]);

@@ -3,7 +3,6 @@ import FormChangePassword from "../components/auth/ResetPassword/FormChangePassw
 import UpdateUsername from "../components/auth/UpdateUserName/UpdateUsername";
 import ImageUpload from "../components/ImageUpload";
 import { NavLink } from "react-router-dom";
-import React from "react";
 
 function AccountParams() {
   const [activeOption, setActiveOption] = useState<string | null>(null);

@@ -1,14 +1,7 @@
 import express, { Request, Response } from "express";
-import mysql from "mysql";
+import db from "../utils/db";
 
 const router = express.Router();
-
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "6Z:3r%3FUht=",
-  database: "tmdb_db",
-});
 
 router.get("/checkUser/:id_firebase", (req: Request, res: Response) => {
   console.log("requête reçu checkuser");

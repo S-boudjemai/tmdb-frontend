@@ -1,5 +1,3 @@
-import React from "react";
-
 function InputSearch({ input, setInput }) {
   function handleSearch(e: { target: { value: any } }) {
     if (input.length === 0) {
