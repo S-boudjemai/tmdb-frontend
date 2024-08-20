@@ -47,6 +47,7 @@ nodemon src/server.ts
 
    - Search for movies using the search bar.
    - View detailed information about each movie, including ratings and reviews.
+   - **Filter Movies**: Use the filter page to refine your search by genre, release date, and rating.
 
 4. **Manage Favorites**:
    - Add movies to your favorites list for quick access later.

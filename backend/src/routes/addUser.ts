@@ -1,14 +1,6 @@
 import express, { Request, Response } from "express";
-import * as mysql from "mysql";
-
+import db from "../utils/db";
 const router = express.Router();
-
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "6Z:3r%3FUht=",
-  database: "tmdb_db",
-});
 
 router.post("/users/addUser", (req: Request, res: Response) => {
   console.log("requête reçu add user");
